@@ -1,0 +1,148 @@
+/* Resets browser defaults */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* HTML and body settings to ensure full height */
+html, body {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Flexbox split screen layout */
+.split-screen {
+    display: flex;
+    height: 100%;
+}
+
+/* Panel containing changing background images */
+.left-panel {
+    flex-basis: 50%;
+    background: url('your-default-image.jpg') no-repeat center center/cover; /* Replace with your default image path */
+    position: relative; /* For positioning the image credits or overlays */
+}
+
+/* Styling for image credits or any text overlays on the left panel */
+.left-panel::after {
+    content: 'Photo by Photographer'; /* Replace with actual credits if needed */
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+/* Right panel that contains the form */
+.right-panel {
+    flex-basis: 50%;
+    background: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+/* Form container with a white background */
+.form-container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Form header styles */
+.form-header h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.form-header p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Form steps */
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+/* Input fields styling */
+input[type='text'],
+input[type='tel'],
+input[type='url'],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Buttons common styles */
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #5cb85c;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #4cae4c;
+}
+
+/* Handling button positioning and spacing */
+.btn-next,
+.btn-submit {
+    margin-top: 20px;
+}
+
+/* Back button, only shown on steps beyond the first */
+.btn-back {
+    background: #999;
+    margin-top: 5px;
+}
+
+.btn-back:hover {
+    background: #888;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .split-screen {
+        flex-direction: column;
+    }
+
+    .left-panel,
+    .right-panel {
+        flex-basis: 100%;
+        padding: 20px;
+    }
+
+    .form-container {
+        padding: 20px;
+    }
+}
