@@ -1,0 +1,63 @@
+// Define the array of images for the background of the left panel.
+let travelImages = [
+    'https://source.unsplash.com/daily?mountains', // Example image, replace with actual URLs
+    'https://source.unsplash.com/daily?city',      // Example image, replace with actual URLs
+    'https://source.unsplash.com/daily?ocean',     // Example image, replace with actual URLs
+    // Add more images as needed
+];
+let currentImageIndex = 0;
+
+// Function to change the background image of the left panel
+function changeBackgroundImage() {
+    const leftPanel = document.querySelector('.left-panel');
+    // Set the new background image
+    leftPanel.style.backgroundImage = url('${travelImages[currentImageIndex]}');
+    // Cycle through the travelImages array
+    currentImageIndex = (currentImageIndex + 1) % travelImages.length;
+}
+
+// Set the interval for changing the background image
+setInterval(changeBackgroundImage, 10000); // Change background every 10 seconds
+
+// Initialize the first background image
+changeBackgroundImage();
+
+// Form navigation logic
+const formSteps = document.querySelectorAll('.form-step');
+let currentStep = 0; // Start at the first step
+
+// Function to move to the next form step
+function nextStep() {
+    if (currentStep < formSteps.length - 1) {
+        formSteps[currentStep].classList.remove('active');
+        formSteps[currentStep + 1].classList.add('active');
+        currentStep++;
+    }
+}
+
+// Function to move to the previous form step
+function prevStep() {
+    if (currentStep > 0) {
+        formSteps[currentStep].classList.remove('active');
+        formSteps[currentStep - 1].classList.add('active');
+        currentStep--;
+    }
+}
+
+// Attach event listeners to next and back buttons
+document.querySelectorAll('.btn-next').forEach(btn => {
+    btn.addEventListener('click', nextStep);
+});
+
+document.querySelectorAll('.btn-back').forEach(btn => {
+    btn.addEventListener('click', prevStep);
+});
+
+// Initialize form steps: hide all steps on initial load except the first one
+function initializeFormSteps() {
+    formSteps.forEach((step, index) => {
+        step.classList.toggle('active', index === 0);
+    });
+}
+
+initializeFormSteps();
